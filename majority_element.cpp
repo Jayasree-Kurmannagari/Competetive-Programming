@@ -16,3 +16,18 @@ public:
         return -1;
     }
 };
+
+//Boyer-Moore Voting Algorithm
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int count=0,candidate;
+        for(int num:nums){
+            if(!count)
+                candidate = num;
+            count+= (num==candidate)?1:-1;
+        }
+        return candidate;
+    }
+};
