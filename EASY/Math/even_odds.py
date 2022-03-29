@@ -1,6 +1,6 @@
-//Codeforces
-//Problem 318A Even Odds
-//<a href="https://codeforces.com/contest/318/problem/A">
+#Codeforces
+#Problem 318A Even Odds
+#<a href="https://codeforces.com/contest/318/problem/A">
 
 import math
 n,k=map(int,input().split());

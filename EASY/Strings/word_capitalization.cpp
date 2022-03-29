@@ -1,6 +1,7 @@
 //Codeforces
 //Problem 281A  Word Capitalization
 //<a href="https://codeforces.com/problemset/problem/281/A">
+
 #include<bits/stdc++.h>
 using namespace std;
 int main(){
