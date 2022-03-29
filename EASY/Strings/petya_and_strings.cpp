@@ -11,7 +11,6 @@ int main(){
     for(int i=0;i<strlen(s1);i++){
         s1[i]=tolower(s1[i]);
         s2[i]=tolower(s2[i]);
- 
     }
     result = strcmp(s1,s2);
     if(result==0)cout<<0;
