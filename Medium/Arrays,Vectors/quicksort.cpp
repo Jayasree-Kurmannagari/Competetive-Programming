@@ -1,4 +1,5 @@
 //Sorting
+//Divide and Conquer
 
 #include<bits/stdc++.h>
 using namespace std;
