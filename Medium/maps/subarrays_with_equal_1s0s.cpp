@@ -6,7 +6,7 @@ using namespace std;
 
 class Solution{
     public:
-        int countSubarrWithEqualZeroAndOne(int arr[], int n){
+        void countSubarrWithEqualZeroAndOne(int arr[], int n){
             for(int i=0;i<n;i++){
                 if(arr[i]==0) arr[i]=-1;
             }
@@ -18,7 +18,23 @@ class Solution{
                 if(umap[sum]>=1) count+=umap[sum];
                 umap[sum]++;
             }
-        return count;
+        cout<<count<<endl;
+        }
+
+        void printSubarrWithEqualZeroAndOne(int arr[],int n){
+            unordered_map<int,vector<int>> umap;
+            vector<pair<int,int>> p;
+            int sum=0;
+            for(int i=0;i<n;i++){
+                sum+=arr[i];
+                if(sum==0) p.push_back(make_pair(0,i));
+                if(umap.find(sum)!=umap.end()){
+                    vector<int> v = umap[sum];
+                    for(auto x:v) p.push_back(make_pair(x+1,i));
+                }
+                umap[sum].push_back(i);
+            }
+            for(auto x:p) {cout<<x.first<<" "<<x.second;cout<<endl;}
         }
 };
 
@@ -27,7 +43,7 @@ int main(){
     int arr[n];
     for(int i=0;i<n;i++) cin>>arr[i];
     Solution ob;
-    int res = ob.countSubarrWithEqualZeroAndOne(arr,n);
-    cout<<res;
+    ob.countSubarrWithEqualZeroAndOne(arr,n);
+    ob.printSubarrWithEqualZeroAndOne(arr,n);
     return 0;
 }
