@@ -8,6 +8,7 @@ using namespace std;
 class Solution{
     public:
         void rearrangeWithSpace(int arr[],int n){
+            //Order Retention,Space:O(n),Time:O(n)
             vector<int> pos,neg;
             for(int i=0;i<n;i++){
                 if(arr[i]>=0) pos.push_back(arr[i]);
@@ -21,6 +22,25 @@ class Solution{
             while(i<pos.size()) arr[x++]=pos[i++];
             while(j<neg.size()) arr[x++]=neg[j++];
         }
+
+        int partition(int arr[],int l,int h){
+            int i=-1,j=0,pivot=0;
+            for(int j=0;j<h;j++){
+                if(arr[j]<pivot) swap(arr[++i],arr[j]);
+            }
+            swap(arr[++i],arr[h-1]);
+            return i;
+        }
+
+        void rearrangeWithQuickSort(int arr[],int n){
+            //No Order Retention, Space:O(1),Time:O(n)
+            int pos = partition(arr,0,n);
+            int neg = 0;
+            while(neg<pos){
+                swap(arr[neg],arr[pos++]);
+                neg+=2;
+            }
+        }
 };
 
 int main(){
@@ -28,7 +48,8 @@ int main(){
     int arr[n];
     for(int i=0;i<n;i++) cin>>arr[i];
     Solution ob;
-    ob.rearrangeWithSpace(arr,n);
+    //ob.rearrangeWithSpace(arr,n);
+    //ob.rearrangeWithQuickSort(arr,n);
     for(int i=0;i<n;i++) cout<<arr[i]<<" ";
     cout<<endl;
 }
