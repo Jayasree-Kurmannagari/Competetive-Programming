@@ -32,7 +32,7 @@ class Solution{
             return i;
         }
 
-        void rearrangeWithQuickSort(int arr[],int n){
+        void rearrangeWithPartition(int arr[],int n){
             //No Order Retention, Space:O(1),Time:O(n)
             int pos = partition(arr,0,n);
             int neg = 0;
@@ -49,7 +49,7 @@ int main(){
     for(int i=0;i<n;i++) cin>>arr[i];
     Solution ob;
     //ob.rearrangeWithSpace(arr,n);
-    //ob.rearrangeWithQuickSort(arr,n);
+    //ob.rearrangeWithPartition(arr,n);
     for(int i=0;i<n;i++) cout<<arr[i]<<" ";
     cout<<endl;
 }
