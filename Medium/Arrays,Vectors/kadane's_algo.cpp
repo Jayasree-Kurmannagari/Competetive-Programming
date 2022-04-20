@@ -1,5 +1,6 @@
 //GeeksForGeeks
 //https://practice.geeksforgeeks.org/problems/kadanes-algorithm-1587115620/1#
+//Dynamic Programming
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -12,13 +13,13 @@ class Solution{
     // n: size of array
     //Function to find the sum of contiguous subarray with maximum sum.
     long long maxSubarraySum(int arr[], int n){
-        int max_ending_here=0,max_so_far=INT_MIN;
+        int curr_sum=0,maxTillNow=INT_MIN;
         for(int i=0;i<n;i++){
-            max_ending_here+=arr[i];
-            if(max_so_far < max_ending_here) max_so_far = max_ending_here;
-            if(max_ending_here<0) max_ending_here=0;
+            curr_sum+=arr[i];
+            if(maxTillNow < curr_sum) maxTillNow = curr_sum;
+            if(curr_sum<0) curr_sum=0;
         }
-        return max_so_far;
+        return maxTillNow;
     }
 };
 
