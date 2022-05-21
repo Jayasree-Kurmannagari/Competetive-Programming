@@ -28,15 +28,17 @@ void printLevelOrder(Node* node){
     }
 }
 
-Node* insertNode(Node *root,int x,queue<Node*> &q){
-    Node* newNode = new Node(x);
-    if(root==NULL) root=newNode;
-    else if(q.front()->left==NULL) q.front()->left=newNode;
-    else{
-        q.front()->right=newNode;
-        q.pop();
+Node* insertNode(Node *root,string x,queue<Node*> &q){
+    if(x!="N"){
+        Node* newNode = new Node(stoi(x));
+        if(root==NULL) root=newNode;
+        else if(q.front()->left==NULL) q.front()->left=newNode;
+        else{
+            q.front()->right=newNode;
+            q.pop();
+        }
+        q.push(newNode);
     }
-    q.push(newNode);
     return root;
 }
 
@@ -45,19 +47,18 @@ int main(){
         freopen("../../input.txt","r",stdin);
         freopen("../../output.txt","w",stdout);
     #endif
-    int n;cin>>n;
-    int arr[n];
-    for(int i=0;i<n;i++) cin>>arr[i];
+    string str;
     Node* root = NULL;
-    queue<Node*> q;
-    for(int i=0;i<n;i++){
-        root = insertNode(root,arr[i],q);
-    }
-    // Node* root = new Node(1);
-    // root->left = new Node(3);
-    // root->right = new Node(4);
-    // root->left->left = new Node(7);
-    // root->left->right = new Node(2);
+    getline(cin,str);
+    if(str.length()!=0 || str[0]!='N'){
+        vector<string> nodeData;
+        istringstream iss(str);
+        for(string str;iss>>str;) nodeData.push_back(str);
+        queue<Node*> q;
+        for(int i=0;i<nodeData.size();i++){
+            root = insertNode(root,nodeData[i],q);
+        }
+    } 
     printLevelOrder(root);
     return 0;
 }
