@@ -67,6 +67,57 @@ void inorderIterative(Node* root){
     }
 }
 
+void inorderMorris(Node* root){
+    if(root==NULL) return;
+    Node *current,*prev;
+    current = root;
+    while(current!=NULL){
+        if(current->left==NULL){
+            cout<<current->data<<" ";
+            current=current->right;
+        }
+        else{
+            prev = current->left;
+            while(prev->right!=NULL && prev->right!=current) prev=prev->right;
+            if(prev->right==NULL){
+                prev->right = current;
+                current = current->left;
+            }
+            else{
+                prev->right = NULL;
+                cout<<current->data<<" ";
+                current=current->right;
+            }
+        }
+    }
+}
+
+void preorderMorris(Node* root){
+    if(root==NULL) return;
+    Node *current,*prev;
+    current = root;
+    while(current!=NULL){
+        if(current->left==NULL){
+            cout<<current->data<<" ";
+            current=current->right;
+        }
+        else{
+            prev = current->left;
+            while(prev->right!=NULL && prev->right!=current) prev=prev->right;
+            if(prev->right==NULL){
+                prev->right = current;
+                cout<<current->data<<" ";
+                current = current->left;
+            }
+            else{
+                prev->right = NULL;
+                current=current->right;
+            }
+        }
+    }
+}
+
+
 void preorderRecursive(Node* root){
     if(root!=NULL){
         cout<<root->data<<" ";
@@ -91,6 +142,14 @@ void preorderIterative(Node* root){
     }
 }
 
+void postorderRecursive(Node* root){
+    if(root!=NULL){
+        postorderRecursive(root->left);
+        postorderRecursive(root->right);
+        cout<<root->data<<" ";
+    }
+}
+
 int main(){
     #ifndef ONLINE_JUDGE
         freopen("../../input.txt","r",stdin);
@@ -111,6 +170,9 @@ int main(){
     //printLevelOrder(root);
     //inorderRecursive(root);
     //inorderIterative(root);
+    //inorderMorris(root);
     //preorderRecursive(root);
+    preorderMorris(root);
+    //postorderRecursive(root);
     return 0;
 }
