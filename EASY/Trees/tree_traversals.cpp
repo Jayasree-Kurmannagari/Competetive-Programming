@@ -150,6 +150,52 @@ void postorderRecursive(Node* root){
     }
 }
 
+void postorderIterative(Node* root){
+    stack<Node*> s;
+    while(true){
+        while(root){
+            s.push(root);
+            s.push(root);
+            root=root->left;
+        }
+        if(s.empty()) return;
+        root = s.top();
+        s.pop();
+        if(!s.empty() && s.top()==root) root=root->right;
+        else{
+            cout<<root->data<<" ";
+            root=NULL;
+        }
+    }
+}
+
+void postorderMorris(Node* root){
+    vector<int> v;
+    Node *current,*prev;
+    current = root;
+    while(current){
+        if(current->right==NULL){
+            v.push_back(current->data);
+            current = current ->left;
+        }
+        else{
+            prev = current->right;
+            while(prev->left && prev->left!=current) prev = prev->left;
+            if(prev->left==NULL){
+                prev->left = current;
+                v.push_back(current->data);
+                current = current->right;
+            }
+            else {
+                prev->left = NULL;
+                current = current->left;
+            }
+        }
+    }
+    reverse(v.begin(),v.end());
+    for(auto x:v) cout<<x<<" ";
+}
+
 int main(){
     #ifndef ONLINE_JUDGE
         freopen("../../input.txt","r",stdin);
@@ -172,7 +218,9 @@ int main(){
     //inorderIterative(root);
     //inorderMorris(root);
     //preorderRecursive(root);
-    preorderMorris(root);
+    //preorderMorris(root);
     //postorderRecursive(root);
+    //postorderIterative(root);
+    postorderMorris(root);
     return 0;
 }
