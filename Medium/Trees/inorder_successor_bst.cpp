@@ -15,7 +15,7 @@ class Node{
     }
 };
 
-Node* insertNode(Node *root,string data,queue<Node*> &q,int i){
+Node* buildTree(Node *root,string data,queue<Node*> &q,int i){
     if(data!="N"){
         Node* newNode = new Node(stoi(data));
         if(root==NULL) root=newNode;
@@ -61,7 +61,7 @@ int main(){
         istringstream iss(str);
         for(string s;iss>>s;) nodeData.push_back(s);
         queue<Node*> q;
-        for(int i=0;i<nodeData.size();i++) root = insertNode(root,nodeData[i],q,i);
+        for(int i=0;i<nodeData.size();i++) root = buildTree(root,nodeData[i],q,i);
     }
     int key;cin>>key;
     Node* k = search(root,key);
