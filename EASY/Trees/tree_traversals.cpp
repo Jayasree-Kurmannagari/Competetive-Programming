@@ -15,12 +15,12 @@ class Node{
     }
 };
 
-Node* insertNode(Node *root,string x,queue<Node*> &q){
+Node* insertNode(Node *root,string x,queue<Node*> &q,int i){
     if(x!="N"){
         Node* newNode = new Node(stoi(x));
         if(root==NULL) root=newNode;
-        else if(q.front()->left==NULL) q.front()->left=newNode;
-        else{
+        else if(q.front()->left==NULL && i%2) q.front()->left=newNode;
+        else if(i%2==0){
             q.front()->right=newNode;
             q.pop();
         }
@@ -204,23 +204,24 @@ int main(){
     string str;
     Node* root = NULL;
     getline(cin,str);
+    int count=0;
     if(str.length()!=0 || str[0]!='N'){
         vector<string> nodeData;
         istringstream iss(str);
         for(string str;iss>>str;) nodeData.push_back(str);
         queue<Node*> q;
         for(int i=0;i<nodeData.size();i++){
-            root = insertNode(root,nodeData[i],q);
+            root = insertNode(root,nodeData[i],q,i);
         }
     } 
     //printLevelOrder(root);
-    //inorderRecursive(root);
+    inorderRecursive(root);
     //inorderIterative(root);
     //inorderMorris(root);
     //preorderRecursive(root);
     //preorderMorris(root);
     //postorderRecursive(root);
     //postorderIterative(root);
-    postorderMorris(root);
+    //postorderMorris(root);
     return 0;
 }
