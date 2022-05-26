@@ -15,7 +15,7 @@ class Node{
     }
 };
 
-Node* insertNode(Node *root,string x,queue<Node*> &q,int i){
+Node* buildTree(Node *root,string x,queue<Node*> &q,int i){
     if(x!="N"){
         Node* newNode = new Node(stoi(x));
         if(root==NULL) root=newNode;
@@ -204,14 +204,13 @@ int main(){
     string str;
     Node* root = NULL;
     getline(cin,str);
-    int count=0;
     if(str.length()!=0 || str[0]!='N'){
         vector<string> nodeData;
         istringstream iss(str);
         for(string str;iss>>str;) nodeData.push_back(str);
         queue<Node*> q;
         for(int i=0;i<nodeData.size();i++){
-            root = insertNode(root,nodeData[i],q,i);
+            root = buildTree(root,nodeData[i],q,i);
         }
     } 
     //printLevelOrder(root);
