@@ -54,7 +54,7 @@ int main()
     Solution ob;
     ob.nullPoints(n, magnets, getAnswer);
     for (int i = 0; i < n - 1; i++)
-        cout <<std::fixed<<std::setprecision(2)<< getAnswer[i] << " ";
+        cout <<fixed<<setprecision(2)<< getAnswer[i] << " ";
     cout << endl;
     return 0;
 }
